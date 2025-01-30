@@ -1,0 +1,12 @@
+spring:
+  data:
+    mongodb:
+      username: rami
+      password: rami
+      host: localhost
+      port: 27017
+      database: customer
+      authentication-database: admin
+
+server:
+  port: 8090
