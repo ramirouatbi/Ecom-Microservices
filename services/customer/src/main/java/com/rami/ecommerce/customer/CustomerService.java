@@ -35,12 +35,10 @@ public class CustomerService {
     }
 
     private void mergerCustomer(Customer customer, CustomerRequest request) {
-        if(StringUtils.isNotBlank(request.firstName())){
-            customer.setFirstName(request.firstName());
+        if(StringUtils.isNotBlank(request.firstname())){
+            customer.setFirstname(request.firstname());
         }
-        if(StringUtils.isNotBlank(request.lastName())){
-            customer.setLastName(request.lastName());
-        }
+
         if(StringUtils.isNotBlank(request.email())){
             customer.setEmail(request.email());
         }
@@ -67,7 +65,7 @@ public class CustomerService {
     public CustomerResponse findById(String customerId) {
         return this.repository.findById(customerId)
                 .map(mapper::fromCustomer)
-                .orElseThrow(() -> new CustomerNotFoundException(format("No customer found with the provided id ::%s",customerId)));
+                .orElseThrow(() -> new CustomerNotFoundException(String.format("No customer found with the provided id ::%s",customerId)));
     }
 
     public void deleteCustomer(String customerId) {

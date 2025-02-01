@@ -1,8 +1,9 @@
 package com.rami.ecommerce.customer;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public class CustomerMapper {
     public Customer toCustomer(CustomerRequest request) {
         if(request == null){
@@ -10,8 +11,8 @@ public class CustomerMapper {
         }
         return Customer.builder()
                 .id(request.id())
-                .firstName(request.firstName())
-                .lastName(request.lastName())
+                .firstname(request.firstname())
+                .lastname(request.lastname())
                 .email(request.email())
                 .address(request.address())
                 .build();
@@ -20,8 +21,8 @@ public class CustomerMapper {
     public CustomerResponse fromCustomer(Customer customer) {
         return new CustomerResponse(
                 customer.getId(),
-                customer.getFirstName(),
-                customer.getLastName(),
+                customer.getFirstname(),
+                customer.getLastname(),
                 customer.getEmail(),
                 customer.getAddress()
         );
