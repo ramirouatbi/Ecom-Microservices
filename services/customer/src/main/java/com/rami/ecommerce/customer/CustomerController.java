@@ -12,37 +12,38 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerController {
 
-    private final CustomerService service;
+
+    private CustomerService service;
 
     @PostMapping
     public ResponseEntity<String> createCustomer(@RequestBody @Valid CustomerRequest request) {
-        return ResponseEntity.ok(service.createCustomer(request));
+        return ResponseEntity.ok(this.service.createCustomer(request));
     }
 
     @PutMapping
     public ResponseEntity<Void> updateCustomer(@RequestBody @Valid CustomerRequest request) {
-        service.updateCustomer(request);
+        this.service.updateCustomer(request);
         return ResponseEntity.accepted().build();
     }
 
     @GetMapping
     public ResponseEntity<List<CustomerResponse>> findAll() {
-        return ResponseEntity.ok(service.findAllCustomer());
+        return ResponseEntity.ok(this.service.findAllCustomer());
     }
 
     @GetMapping("/exists/{customer-id}")
     public ResponseEntity<Boolean> existsById(@PathVariable("customer-id") String customerId) {
-        return ResponseEntity.ok(service.existsById(customerId));
+        return ResponseEntity.ok(this.service.existsById(customerId));
     }
 
     @GetMapping("/{customer-id}")
     public ResponseEntity<CustomerResponse> findById(@PathVariable("customer-id") String customerId) {
-        return ResponseEntity.ok(service.findById(customerId));
+        return ResponseEntity.ok(this.service.findById(customerId));
     }
 
     @DeleteMapping
     public ResponseEntity<Void> delete(@PathVariable("customer-id") String customerId) {
-        service.deleteCustomer(customerId);
+        this.service.deleteCustomer(customerId);
         return ResponseEntity.accepted().build();
     }
 
