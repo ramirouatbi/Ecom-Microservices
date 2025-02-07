@@ -6,6 +6,8 @@ import com.rami.ecommerce.kafka.OrderConfirmation;
 import com.rami.ecommerce.kafka.OrderProducer;
 import com.rami.ecommerce.orderLine.OrderLineRequest;
 import com.rami.ecommerce.orderLine.OrderLineService;
+import com.rami.ecommerce.payment.PaymentClient;
+import com.rami.ecommerce.payment.PaymentRequest;
 import com.rami.ecommerce.product.ProductClient;
 import com.rami.ecommerce.product.PurchaseRequest;
 import jakarta.persistence.EntityNotFoundException;
@@ -25,6 +27,7 @@ public class OrderService {
     private final OrderMapper mapper;
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
+    private final PaymentClient paymentClient;
 
     public Integer createdOrder(OrderRequest request) {
         var customer = customerClient.findCustomerById(request.customerId())
@@ -44,8 +47,14 @@ public class OrderService {
                     )
             );
         }
-
-        // todo  start payment process
+        var paymentRequest = new PaymentRequest(
+                request.amount(),
+                request.paymentMethod(),
+                order.getId(),
+                order.getReference(),
+                customer
+        );
+        paymentClient.requestOrderPayment(paymentRequest);
         orderProducer.sendOrderConfirmation(
                 new OrderConfirmation(
                         request.reference(),
