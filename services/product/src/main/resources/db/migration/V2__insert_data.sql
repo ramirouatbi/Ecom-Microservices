@@ -6,9 +6,9 @@ INSERT INTO category (id, description, name) VALUES (nextval('category_seq'), 'C
 INSERT INTO category (id, description, name) VALUES (nextval('category_seq'), 'Computer Accessories', 'Accessories');
 
 
--- Assuming you already have a sequence named 'product_seq'
 
--- Insert products for the 'Keyboards' category
+
+
 INSERT INTO public.product (id, available_quantity, description, name, price, category_id)
 VALUES
     (nextval('product_seq'), 10, 'Mechanical keyboard with RGB lighting', 'Mechanical Keyboard 1', 99.99, (SELECT id FROM category WHERE name = 'Keyboards')),
@@ -17,7 +17,7 @@ VALUES
     (nextval('product_seq'), 25, 'Mechanical keyboard with wrist rest', 'Ergonomic Keyboard 1', 109.99, (SELECT id FROM category WHERE name = 'Keyboards')),
     (nextval('product_seq'), 18, 'Wireless keyboard and mouse combo', 'Wireless Combo 1', 69.99, (SELECT id FROM category WHERE name = 'Keyboards'));
 
--- Insert products for the 'Monitors' category
+
 INSERT INTO public.product (id, available_quantity, description, name, price, category_id)
 VALUES
     (nextval('product_seq'), 30, '27-inch IPS monitor with 4K resolution', '4K Monitor 1', 399.99, (SELECT id FROM category WHERE name = 'Monitors')),
@@ -26,7 +26,7 @@ VALUES
     (nextval('product_seq'), 28, '32-inch curved monitor with AMD FreeSync', 'Curved Monitor 1', 329.99, (SELECT id FROM category WHERE name = 'Monitors')),
     (nextval('product_seq'), 35, 'Portable USB-C monitor for laptops', 'Portable Monitor 1', 249.99, (SELECT id FROM category WHERE name = 'Monitors'));
 
--- Insert products for the 'Screens' category
+
 INSERT INTO public.product (id, available_quantity, description, name, price, category_id)
 VALUES
     (nextval('product_seq'), 15, 'Curved OLED gaming screen with 240Hz refresh rate', 'Curved OLED Gaming Screen 1', 799.99, (SELECT id FROM category WHERE name = 'Screens')),
@@ -35,7 +35,7 @@ VALUES
     (nextval('product_seq'), 20, 'Ultra-slim 4K HDR display for multimedia', 'Ultra-slim 4K HDR Display 1', 449.99, (SELECT id FROM category WHERE name = 'Screens')),
     (nextval('product_seq'), 25, 'Gaming projector with low input lag', 'Gaming Projector 1', 899.99, (SELECT id FROM category WHERE name = 'Screens'));
 
--- Insert products for the 'Mice' category
+
 INSERT INTO public.product (id, available_quantity, description, name, price, category_id)
 VALUES
     (nextval('product_seq'), 30, 'Wireless gaming mouse with customizable RGB lighting', 'RGB Gaming Mouse 1', 59.99, (SELECT id FROM category WHERE name = 'Mice')),
@@ -44,7 +44,7 @@ VALUES
     (nextval('product_seq'), 26, 'Travel-sized compact mouse for laptops', 'Travel Mouse 1', 19.99, (SELECT id FROM category WHERE name = 'Mice')),
     (nextval('product_seq'), 35, 'Vertical ergonomic mouse for reduced strain', 'Vertical Ergonomic Mouse 1', 39.99, (SELECT id FROM category WHERE name = 'Mice'));
 
--- Insert products for the 'Accessories' category
+
 INSERT INTO public.product (id, available_quantity, description, name, price, category_id)
 VALUES
     (nextval('product_seq'), 25, 'Adjustable laptop stand with cooling fan', 'Adjustable Laptop Stand 1', 34.99, (SELECT id FROM category WHERE name = 'Accessories')),
